@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brass Band Portfolio - Skills Showcase</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -174,34 +175,38 @@
         }
 
         .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-        }
+    display: flex;
+    justify-content: center;
+    gap: 30px;  /* Controls spacing between icons */
+    margin-top: 30px;
+    align-items: center;  /* This ensures vertical alignment */
+}
 
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;  /* Removes underline from links */
+    transition: all 0.3s ease;
+}
 
-        .social-icon:hover {
-            background: #4a4a4a;
-            transform: translateY(-3px);
-        }
+.social-icon i {
+    font-size: 20px;
+    color: white;
+    line-height: 1;  /* Ensures icon vertical centering */
+    display: flex;  /* Helps with alignment */
+    align-items: center;
+    justify-content: center;
+}
 
-        .social-icon svg {
-            width: 20px;
-            height: 20px;
-            color: white;
-        }
+.social-icon:hover {
+    background: #4a4a4a;
+    transform: translateY(-3px);
+}
 
 
         @media (max-width: 1200px) {
@@ -355,28 +360,19 @@
                 <div class="quote-author">- Brass Band Group  Spirit</div>
             </div>
             <div class="social-icons">
-                <a href="https://www.instagram.com/abra.h.a.m" class="social-icon">
-                    <i data-lucide="instagram"class="fas fa-instagram"></i>
-                </a>
-                <a href="https://github.com/mugishaabraham" class="social-icon">
-                    <i data-lucide="github"class="fas fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/abraham-mugisha-2192b8334/overlay/about-this-profile/" class="social-icon">
-                    <i data-lucide="linkedin"class="fas fa-linkedin"></i>
-                </a>
-                <a href="mailto:mugishaabraham12@gmail.com" class="social-icon">
-                    <i data-lucide="mail"class="fas fa-envelope"></i>
-                </a>
-                <a href="https://t.me/Abr_a_h_a_m" class="social-icon">
-                    <i data-lucide="telegram"class="fas fa--telegram-plane"></i>
-                </a>
+                <a href="https://www.instagram.com/abra.h.a.m" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/mugishaabraham" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/abraham-mugisha-2192b8334/overlay/about-this-profile/" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:mugishaabraham12@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                <a href="https://t.me/Abr_a_h_a_m" class="social-icon"><i class="fab fa-telegram"></i></a>
             </div>
         </div>
     </footer>
-
-    <script>
-        // Initialize Lucide icons
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
-    </script>
+    });
+</script>
 </body>
 </html>
