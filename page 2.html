@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brass Band Portfolio - Skills Showcase</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+
+        .header-section {
+            padding: 20px;
+            max-width: 1400px;
+            margin: 20px auto;
+        }
+
+        .video-container {
+            width: 100%;
+            height: 70vh;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background: #000;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Added Video Overlay Styles */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .video-overlay h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+        }
+
+        .video-overlay p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            line-height: 1.6;
+        }
+
+        /* Rest of your styles remain the same */
+        .content-container {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .scroll-column {
+            height: 80vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            scrollbar-width: thin;
+        }
+
+        .scroll-column::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .scroll-column::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .scroll-column::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+
+        .scroll-column::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .content-item {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .content-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .content-item img, 
+        .content-item video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .content-item-description {
+            padding: 15px;
+            background: #f8f8f8;
+        }
+
+        .content-item-description h3 {
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .content-item-description p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #888;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            background: #4a4a4a;
+            transform: translateY(-3px);
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
+
+
+        @media (max-width: 1200px) {
+            .content-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .header-section {
+                padding: 15px;
+            }
+            .video-overlay h1 {
+                font-size: 2.8rem;
+            }
+            .video-overlay p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .content-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .video-container {
+                height: 50vh;
+            }
+            .video-overlay h1 {
+                font-size: 2.2rem;
+            }
+            .video-overlay p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .content-container {
+                grid-template-columns: 1fr;
+            }
+            .header-section {
+                padding: 10px;
+            }
+            .video-overlay h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Video Section with Margins and Overlay -->
+    <div class="header-section">
+        <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="fanfare.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay">
+                <h1>Brass Band </h1>
+                <p>Showcasing the passion, skills, and dedication to the Brass band in music</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scrollable Content Sections (rest remains the same) -->
+    <div class="content-container">
+        <!-- Column 1 - Volleyball Skills -->
+        <div class="scroll-column">
+            <div class="content-item">
+                <img src="brass band.jpg" alt="Volleyball Serve Technique">
+                <div class="content-item-description">
+                    <h3>Note playing</h3>
+                    <p>matering the notes</p>
+                </div>
+            </div>
+            <div class="content-item">
+                <video controls>
+                    <source src="fanfare.mp4" type="video/mp4">
+                </video>
+                <div class="content-item-description">
+                    <h3>In the Ceremony</h3>
+                    <p>the ceremony of new cardinal in Rwanda in Amahoro stadium</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 2 - Team Play -->
+        <div class="scroll-column">
+            <div class="content-item">
+                <img src="2.jpg" alt="Team Formations">
+                <div class="content-item-description">
+                    <h3>How to stand in lines</h3>
+                    <p>Advanced formation and moving techniques</p>
+                </div>
+            </div>
+            <div class="content-item">
+                <!--<video controls>
+                    <source src="team-practice.mp4" type="video/mp4">
+                </video>-->
+                <img src="1.jpg" alt="Team Formations">
+                <div class="content-item-description">
+                    <h3>Air pumping</h3>
+                    <p>how to regulate air pumping in the instrument </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 3 - Defense -->
+        <div class="scroll-column">
+            <div class="content-item">
+                <img src="3.jpg" alt="Blocking Techniques">
+                <div class="content-item-description">
+                    <h3>Timing</h3>
+                    <p>Timing  of when we are counting silence and when to jump in</p>
+                </div>
+            </div>
+            <div class="content-item">
+               <!-- <video controls>
+                    <source src="defence.JPG" type="video/mp4">
+                </video>-->
+                <img src="4.jpg" alt="Blocking Techniques">
+                <div class="content-item-description">
+                    <h3>High Pitch notes</h3>
+                    <p>when experiencing high pitch notes ,how to overcome them and getting back on track.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 4 - Competition -->
+        <div class="scroll-column">
+            <div class="content-item">
+                <img src="in unifrom.jpg" alt="Tournament Play">
+                <div class="content-item-description">
+                    <h3>UNIFORM  SUITE</h3>
+                    <p>Me wearing the suite . we weared blue suites for alto voices intruments and bass intruments and red uniform for other two voices </p>
+                </div>
+            </div>
+            <div class="content-item">
+                <!--<video controls>
+                    <source src="match-highlights.mp4" type="video/mp4">
+                </video>-->
+                <img src="order.jpg" alt="Tournament Play">
+                <div class="content-item-description">
+                    <h3>order</h3>
+                    <p>The order of standing on lines.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!-- Footer Section -->
+     <footer class="footer">
+        <div class="footer-content">
+            <div class="quote">
+                "Music is the universal language of mankind. Where words fail, music speaks."
+                <div class="quote-author">- Brass Band Group  Spirit</div>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/abra.h.a.m" class="social-icon">
+                    <i data-lucide="instagram"class="fas fa-instagram"></i>
+                </a>
+                <a href="https://github.com/mugishaabraham" class="social-icon">
+                    <i data-lucide="github"class="fas fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/abraham-mugisha-2192b8334/overlay/about-this-profile/" class="social-icon">
+                    <i data-lucide="linkedin"class="fas fa-linkedin"></i>
+                </a>
+                <a href="mailto:mugishaabraham12@gmail.com" class="social-icon">
+                    <i data-lucide="mail"class="fas fa-envelope"></i>
+                </a>
+                <a href="https://t.me/Abr_a_h_a_m" class="social-icon">
+                    <i data-lucide="telegram"class="fas fa--telegram-plane"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
