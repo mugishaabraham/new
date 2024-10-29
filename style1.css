@@ -1,0 +1,407 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: rgb(0, 1, 43);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logo i {
+    margin-right: 10px;
+}
+
+/* Page Title Styles */
+.page-title {
+    background-color: rgb(0, 1, 43);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+/* Description Section Styles */
+.description-section {
+    background-color: rgb(0, 1, 43);
+    color: white;
+    padding: 3rem 0;
+}
+
+/* Media Section Styles */
+.media-section {
+    background-color: #e5ecfb;
+    padding: 3rem 0;
+    min-height: 400px;
+}
+
+/* Heading Styles */
+.heading {
+    text-align: center;
+    font-size: 2.5em;
+    color: #000; /* Black text */
+    padding: 1rem 0; /* Adds some spacing above and below */
+}
+
+.heading i {
+    margin-right: 10px; /* Space between icon and text */
+    color: black; /* Icon color */
+}
+
+.heading span {
+    font-weight: bold;
+    color: gold; /* Text color for "Projects" */
+}
+
+
+/* Main Content Styles */
+.qa-sections {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 3rem;
+    background-color: #e5ecfb;
+    min-height: calc(100vh - 320px);
+}
+
+/* Section Styles */
+.qa-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.qa-section h2 {
+    color: gold;
+    text-align: left;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid gold;
+}
+
+.sub-section {
+    margin-bottom: 4rem;  /* Increased space between subsections */
+}
+
+.sub-section:last-child {
+    margin-bottom: 0;
+}
+
+.sub-section h3 {
+    color: rgb(0, 1, 43);
+    text-align: center;
+    margin-bottom: 2.5rem;  /* Increased space below subsection titles */
+    font-size: 1.6rem;
+    position: relative;
+}
+
+.sub-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: rgb(0, 1, 43);
+}
+
+/* Grid Container Base Styles */
+.grid {
+    display: grid;
+    gap: 2rem;  /* Increased gap between items */
+    margin: 0 auto;
+}
+
+/* Hover Title Styles */
+.item {
+    position: relative;
+    overflow: hidden;
+}
+
+.item .hover-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 1, 43, 0.8);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.item:hover .hover-title {
+    opacity: 1;
+    animation: fadeInOut 3s ease;
+}
+
+/* Landscape Section Specific */
+.landscape-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.landscape-section .item {
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+}
+
+/* Circular Section Specific */
+.circular-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.circular-section .item {
+    width: 100%;
+    padding-bottom: 100%;
+    border-radius: 50%;
+}
+
+.circular-section .item a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* Portrait Section Specific */
+.portrait-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.portrait-section .item {
+    width: 100%;
+    padding-bottom: 150%;
+    border-radius: 8px;
+}
+
+/* Common Item Styles */
+.item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.item:hover img {
+    transform: scale(1.05);
+}
+
+/* Video Container Styles - Keeping Original */
+.video-container {
+    position: relative;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Animation for hover title */
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .qa-sections {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .sub-section h3 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .qa-sections {
+        grid-template-columns: 1fr;
+    }
+    
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    
+    .qa-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .sub-section h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Video Container Styles */
+.video-container {
+    position: relative;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.play-button::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 20px;
+    border-color: transparent transparent transparent rgb(0, 1, 43);
+    margin-left: 5px;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: rgb(0, 1, 43);
+    color: white;
+    padding: 2rem 0;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-icons {
+    margin-top: 1.5rem;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.icon-container a {
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.icon-container a:hover {
+    color: #e5ecfb;
+}
+
+.icon-container a:hover {
+    color: gold; /* Changed hover color to gold */
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 1.5rem 2rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .footer {
+        height: auto;
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .qa-sections {
+        padding: 1.5rem;
+    }
+
+    .qa-section {
+        min-width: 100%;
+    }
+
+    .navbar {
+        padding: 1rem;
+        height: auto;
+    }
+
+    .page-title {
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
