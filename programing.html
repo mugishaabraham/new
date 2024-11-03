@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming</title>
+    <link rel="icon" type="image/x-icon" href="abraham.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(to right, #333, #444);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(1, 22, 63, 0.1);
+        }
+
+        .container-wrapper {
+            flex: 1;
+            padding: 2rem 0;
+            background: #f9f9f9;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .container {
+            display: flex;
+            gap: 1.5rem;
+            padding: 2rem;
+            min-width: min-content;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .square {
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .square.active {
+            transform: translateY(-20px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .view-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: white;
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 2;
+        }
+
+        .square.active .view-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .square::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0,123,255,0.9), rgba(0,123,255,0.7));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .square.active::before {
+            opacity: 1;
+        }
+
+        .square img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .square.active img {
+            transform: scale(1.1);
+        }
+
+        /* Scroll buttons */
+        .scroll-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .scroll-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .scroll-left {
+            left: 1rem;
+        }
+
+        .scroll-right {
+            right: 1rem;
+        }
+
+        footer {
+            background: linear-gradient(to right, #0d0152, #010e47);
+            color: rgb(255, 255, 255);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .quote {
+            font-style: italic;
+            margin: 1rem auto;
+            font-size: 1.1rem;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .social-icons {
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+            transform: translateY(-3px);
+        }
+
+        /* Custom scrollbar */
+        .container-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .container-wrapper::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .container-wrapper::-webkit-scrollbar-thumb {
+            background: #858585;
+            border-radius: 4px;
+        }
+
+        .container-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #000000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Programming</h1>
+        My journey as a developer has been both exciting and challenging. I started by creating clones of popular websites like Facebook, Hulu, Netflix, and Twitter (now known as X).
+         These projects allowed me to hone my skills and understand the intricacies of web development. Currently, I am working on additional clones, continuously pushing my boundaries and expanding my knowledge.
+          Each project has been a stepping stone, teaching me valuable lessons about coding, design, and user experience. 
+        I look forward to what lies ahead as I strive to create even more innovative solutions in the tech world.
+    </header>
+
+    <div class="container-wrapper">
+        <button class="scroll-button scroll-left">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="scroll-button scroll-right">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="container">
+            <a href="https://huluclone.vercel.app/" class="square">
+                <img src="hulu.png" alt="Square 1">
+                <i class="fas fa-eye view-icon"></i>
+            </a>
+            <a href="https://netflix-app.vercel.app/" class="square">
+                <img src="Netflix.png" alt="Square 2">
+                <i class="fas fa-eye view-icon"></i>
+            </a>
+            <a href="https://twitter-clone.vercel.app/" class="square">
+                <img src="twitter.png" alt="Square 3">
+                <i class="fas fa-eye view-icon"></i>
+            </a>
+            <a href="https://resumegenx.netlify.app/" class="square">
+                <img src="resumegen.png" alt="Square 4">
+                <i class="fas fa-eye view-icon"></i>
+            </a>
+            <a href="https://reddit-2-0-clone.vercel.app/" class="square">
+                <img src="logo redit.png" alt="Square 5">
+                <i class="fas fa-eye view-icon"></i>
+            </a>
+            <a href="https://facebook-clone-beta.vercel.app/" class="square">
+                <img src="facebook.png" alt="Square 6">
+                <i class="fas fa-eye view-icon"></i>
+            </a>
+            <a href="#" class="square">
+                <img src="facedetector.png" alt="Square 7">
+                <i class="fas fa-eye view-icon"></i>
+            </a>
+            <a href="#" class="square">
+                <img src="crypto.png" alt="Square 8">
+                <i class="fas fa-eye view-icon"></i>
+            </a>
+            <a href="#" class="square">
+                <img src="webchat.PNG" alt="Square 9">
+                <i class="fas fa-eye view-icon"></i>
+            </a>
+            <a href="#" class="square">
+                <img src="kiaweb.PNG" alt="Square 10">
+                <i class="fas fa-eye view-icon"></i>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="quote">
+            "The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle." - Steve Jobs
+        </div>
+        <div class="social-icons">
+            <a href="mailto:mugishaabraham12@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="tel:+250781194393"><i class="fas fa-phone-alt"></i></a>
+            <a href="https://www.instagram.com/abra.h.a.m"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/abraham-mugisha-2192b8334/overlay/about-this-profile/"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Hover effects
+        document.querySelectorAll('.square').forEach(square => {
+            square.addEventListener('mouseenter', function() {
+                this.classList.add('active');
+                const icon = this.querySelector('.view-icon');
+                icon.style.transform = 'translate(-50%, -50%) scale(1.1)';
+            });
+
+            square.addEventListener('mouseleave', function() {
+                this.classList.remove('active');
+                const icon = this.querySelector('.view-icon');
+                icon.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+
+            square.addEventListener('click', function(e) {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+
+        // Scroll buttons functionality
+        const container = document.querySelector('.container-wrapper');
+        const scrollLeftBtn = document.querySelector('.scroll-left');
+        const scrollRightBtn = document.querySelector('.scroll-right');
+        const scrollAmount = 400;
+
+        scrollLeftBtn.addEventListener('click', () => {
+            container.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        scrollRightBtn.addEventListener('click', () => {
+            container.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        // Show/hide scroll buttons based on scroll position
+        container.addEventListener('scroll', () => {
+            const maxScroll = container.scrollWidth - container.clientWidth;
+            scrollLeftBtn.style.opacity = container.scrollLeft > 0 ? '1' : '0';
+            scrollRightBtn.style.opacity = container.scrollLeft < maxScroll ? '1' : '0';
+        });
+    </script>
+</body>
+</html>
