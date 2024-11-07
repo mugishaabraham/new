@@ -1,0 +1,245 @@
+/* General Styles */
+•⁠  ⁠{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: rgb(0, 1, 43);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logo i {
+    margin-right: 10px;
+}
+
+/* Page Title Styles */
+.page-title {
+    background-color: rgb(0, 1, 43);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+/* Description Section Styles */
+.description-section {
+    background-color: rgb(0, 1, 43);
+    color: white;
+    padding: 3rem 0;
+}
+
+/* Media Section Styles */
+.media-section {
+    background-color: #e5ecfb;
+    padding: 3rem 0;
+    min-height: 400px;
+}
+
+/* Heading Styles */
+.heading {
+    text-align: center;
+    font-size: 2.5em;
+    color: gold;
+    padding: 1rem 0;
+}
+
+.heading i {
+    margin-right: 10px;
+    color: gold;
+}
+
+.heading span {
+    font-weight: bold;
+    color: gold;
+}
+
+/* [Previous General, Navbar, Page Title, Description Section styles remain the same] */
+
+.heading i.fas.fa-scissors {
+    color: gold;
+}
+/* [Rest of the previous CSS remains the same] */
+/* Modified Media Container Layout */
+.media-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Column Styles */
+.media-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* To-Read List Column (Left) */
+.media-column:first-child {
+    flex: 1;
+}
+
+.media-column:first-child .media-files {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.media-column:first-child .media-item {
+    width: 100%;
+    height: 400px; /* Fixed height container */
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #E1E8DA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    
+}
+
+/* Books Read Column (Right) */
+.media-column:last-child {
+    flex: 2;
+}
+
+.media-column:last-child .media-files {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+/* Circular Quote Image at Top */
+.media-column:last-child .media-files .media-item:first-child {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1.5rem;
+    grid-column: span 2;
+    justify-self: center;
+    background-color:#E1E8DA ;
+    padding: 0;
+}
+
+/* Special handling for the circular image */
+.media-column:last-child .media-files .media-item:first-child img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Makes the quote image fill the circular container */
+}
+
+/* Regular Book Images */
+.media-column:last-child .media-files .media-item:not(:first-child) {
+    width: 100%;
+    height: 400px; /* Fixed height container */
+    border-radius: 8px;
+    overflow: hidden;
+    background-color:#E1E8DA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* Media Item Styles */
+.media-item {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.media-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Image Styles - Key Changes Here */
+.media-item img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .media-container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .media-column:first-child,
+    .media-column:last-child {
+        flex: 1;
+    }
+    
+    .media-column:last-child .media-files {
+        grid-template-columns: 1fr;
+    }
+    
+    .media-column:last-child .media-files .media-item:first-child {
+        width: 250px;
+        height: 250px;
+    }
+
+    .media-item {
+        height: 350px; /* Slightly smaller height on mobile */
+    }
+}
+
+/* Footer Styles */
+.footer {
+    background-color: rgb(0, 1, 43);
+    color: white;
+    padding: 2rem 0;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-icons {
+    margin-top: 1.5rem;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.icon-container a {
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.icon-container a:hover {
+    color: gold;
+}
