@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOIR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #050B3B;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .header:hover {
+            background-color: #0A1555;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .header h1:hover {
+            transform: scale(1.05);
+        }
+
+        .header p {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Main content area */
+        .content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 2rem;
+            background-color: white;
+        }
+
+        /* Column styles */
+        .column {
+            background-color: #E5E5E5;
+            padding: 2rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .column:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Video containers */
+        .video-container {
+            background-color: #FFF5F5;
+            aspect-ratio: 16/9;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .video-container video,
+        .video-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-container .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-container:hover .play-icon {
+            background-color: #050B3B;
+        }
+
+        .play-icon::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 0 10px 20px;
+            border-color: transparent transparent transparent #050B3B;
+            transition: all 0.3s ease;
+        }
+
+        .video-container:hover .play-icon::after {
+            border-color: transparent transparent transparent white;
+        }
+
+        /* File input styling */
+        .media-input {
+            display: none;
+        }
+
+        .upload-btn {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background-color: #050B3B;
+            color: white;
+            border-radius: 4px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background-color: #0A1555;
+        }
+
+        /* Circular elements */
+        .circle-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            background-color: white;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #050B3B;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer:hover {
+            background-color: #0A1555;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #E5E5E5;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) rotate(360deg);
+            background-color: white;
+        }
+
+        /* Responsive design */
+        @media (max-width: 900px) {
+            .content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1>CHOIR</h1>
+        <p>When I was 10, I  developed unique love for music and Orchestra performance. From then , I’ve horned my vocal skills and teamwork abilities through extensive participation in various choral ensembles. My experience includes performing diverse musical genres, which has enriched my understanding of vocal dynamics and expression. Additionally, I was part of the recorder team, where I collaborated with fellow musicians to enhance our performances. This journey has not only strengthened my musical proficiency but also fostered a sense of community and belonging.</p>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content">
+        <!-- Left Column - Videos -->
+        <div class="column">
+            <div class="video-container">
+                <video id="video1" src="practising.mp4" controls></video>
+                <div class="play-icon"></div>
+                <input type="file" id="videoInput1" class="media-input" accept="video/*">
+            </div>
+            <label for="videoInput1" class="upload-btn">Me at the age of 12 practising recorder</label>
+
+            <div class="video-container">
+                <video id="video2" src="chorale .mov" controls></video>
+                <div class="play-icon"></div>
+                <input type="file" id="videoInput2" class="media-input" accept="video/*">
+            </div>
+            <label for="videoInput2" class="upload-btn">A ceremony we were singing</label>
+        </div>
+
+        <!-- Middle Column - Circles -->
+        <div class="column">
+            <div class="circle-container">
+                <div class="circle">
+                    <img id="circle1" src="choir 2.jpg" alt="">
+                    <input type="file" id="circleInput1" class="media-input" accept="image/*">
+                </div>
+                <label for="circleInput1" class="upload-btn">Notes</label>
+
+                <div class="circle">
+                    <img id="circle2" src="dieu va faire encore.png" alt="Dieu va faire encore">
+                    <input type="file" id="circleInput2" class="media-input" accept="image/*">
+                </div>
+                <label for="circleInput2" class="upload-btn">favorite song</label>
+
+                <div class="circle">
+                    <img id="circle3" src="que ma bouche.png" alt="que ma bouche chante ta louange">
+                    <input type="file" id="circleInput3" class="media-input" accept="image/*">
+                </div>
+                <label for="circleInput3" class="upload-btn">Most repeated song</label>
+
+                <div class="circle">
+                    <img id="circle4" src="so good.png" alt="so good to me">
+                    <input type="file" id="circleInput4" class="media-input" accept="image/*">
+                </div>
+                <label for="circleInput4" class="upload-btn">The Most liked </label>
+            </div>
+        </div>
+
+        <!-- Right Column - Images -->
+        <div class="column">
+            <div class="video-container">
+                <img id="image1" src="in mass.png" alt="">
+                <input type="file" id="imageInput1" class="media-input" accept="image/*">
+            </div>
+            <label for="imageInput1" class="upload-btn">In a mass</label>
+
+            <div class="video-container">
+                <img id="image2" src="note flute.jpg" alt="recorder practises">
+                <input type="file" id="imageInput2" class="media-input" accept="image/*">
+            </div>
+            <label for="imageInput2" class="upload-btn">Practising</label>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>“He who sings prays twice.” — St. Augustine.</p>
+        <p>© 2024 Mugisha Abraham. All Rights Reserved.Rwanda, Western-Rubavu, Gisenyi 8754+5W3</p>
+        <div class="social-icons">
+            <!-- Font Awesome icons -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+            <a href="tel:+250781194393"><i class="fab fa-phone-alt"></i></a>
+            <a href="mailto:mugishaabraham12@gmail.com"><i class="fab fa-envelope"></i></a>
+            <a href="https://www.instagram.com/abra.h.a.m"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/abraham-mugisha-2192b8334/overlay/about-this-profile/"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Function to handle file uploads
+        function handleFileUpload(inputId, displayId, type) {
+            const input = document.getElementById(inputId);
+            const display = document.getElementById(displayId);
+            
+            input.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const url = URL.createObjectURL(file);
+                    if (type === 'video') {
+                        display.src = url;
+                        display.style.display = 'block';
+                        display.nextElementSibling.style.display = 'none';
+                    } else {
+                        display.src = url;
+                        display.style.display = 'block';
+                    }
+                }
+            });
+        }
+
+        // Initialize file upload handlers
+        handleFileUpload('videoInput1', 'video1', 'video');
+        handleFileUpload('videoInput2', 'video2', 'video');
+        handleFileUpload('circleInput1', 'circle1', 'image');
+        handleFileUpload('circleInput2', 'circle2', 'image');
+        handleFileUpload('circleInput3', 'circle3', 'image');
+        handleFileUpload('circleInput4', 'circle4', 'image');
+        handleFileUpload('imageInput1', 'image1', 'image');
+        handleFileUpload('imageInput2', 'image2', 'image');
+    </script>
+</body>
+</html>
