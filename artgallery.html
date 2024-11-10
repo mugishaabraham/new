@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery</title>
+    <link rel="shortcut icon" href="abraham.png" type="image/jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .controls {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .view-controls button {
+            padding: 0.5rem 1rem;
+            margin-right: 0.5rem;
+            border: none;
+            background-color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .view-controls button.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 250px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .gallery {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .gallery.grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery.list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .art-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .art-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery.grid .art-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .gallery.list .art-card {
+            display: flex;
+            align-items: center;
+        }
+
+        .gallery.list .art-card img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .art-info {
+            padding: 1rem;
+        }
+
+        .art-info h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .art-info p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background-color: #e9ecef;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+        }
+
+        .modal img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box input {
+                width: 100%;
+            }
+
+            .gallery.list .art-card {
+                flex-direction: column;
+            }
+
+            .gallery.list .art-card img {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>My Art Gallery</h1>
+        <p>Welcome to my collection of artwork. Click on any piece to view details.</p>
+    </header>
+
+    <div class="controls">
+        <div class="view-controls">
+            <button class="active" data-view="grid">
+                <i class="fas fa-th"></i> Grid
+            </button>
+            <button data-view="list">
+                <i class="fas fa-list"></i> List
+            </button>
+        </div>
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search artwork...">
+        </div>
+    </div>
+
+    <div class="gallery grid" id="gallery"></div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img src="" alt="">
+            <h3></h3>
+            <p class="description"></p>
+            <p class="category"></p>
+        </div>
+    </div>
+
+    <script>
+        // Sample art data - replace with your actual artwork
+        const artworks = [
+            {
+                id: 1,
+                title: "Art work",
+                description: "Painting 2023",
+                category: "board",
+                imageUrl: "./art/art.JPG"
+            },
+            {
+                id: 2,
+                title: "My friend's Face",
+                description: "My Art, 2024",
+                category: "Paper",
+                imageUrl: "./art/un.JPEG"
+            },
+            {
+                id: 4,
+                title: "Lebron",
+                description: "My Art, 2024",
+                category: "Paper",
+                imageUrl: "./art/leb.JPEG"
+            },
+            {
+                id: 5,
+                title: "Finished Art",
+                description: "My Art, 2024",
+                category: "Paper",
+                imageUrl: "./art/lebron.JPEG"
+            },
+            {
+                id: 6,
+                title: "Home chicken",
+                description: "Photography, 2024",
+                category: "Photography",
+                imageUrl: "./art/chickens.JPG"
+            },
+            {
+                id: 7,
+                title: "My Art",
+                description: "Paper, 2024",
+                category: "Paper",
+                imageUrl: "./art/arm.JPEG"
+            },
+            {
+                id: 8,
+                title: "House Plan",
+                description: "Paper, 2024",
+                category: "Paper",
+                imageUrl: "./art/pencil.JPG"
+            },
+            {
+                id: 9,
+                title: "Weding ",
+                description: "Photography, 2024",
+                category: "Photography",
+                imageUrl: "./art/art2.PNG"
+            },
+            {
+                id: 10,
+                title: "My Art",
+                description: "Paper, 2024",
+                category: "Paper",
+                imageUrl: "./art/art3.PNG"
+            },
+            {
+                id: 11,
+                title: "My Art",
+                description: "Paper, 2024",
+                category: "Paper",
+                imageUrl: "./art/art4.PNG"
+            },
+            {
+                id: 12,
+                title: "My Art",
+                description: "Paper, 2024",
+                category: "Paper",
+                imageUrl: "./art/art5.PNG"
+            },
+            {
+                id: 13,
+                title: "My Art",
+                description: "Paper, 2024",
+                category: "Paper",
+                imageUrl: "./art/art6.PNG"
+            },
+            {
+                id: 14,
+                title: "Weding",
+                description: "Photography, 2024",
+                category: "Photography",
+                imageUrl: "./art/art7.PNG"
+            },
+            {
+                id: 15,
+                title: "My Art",
+                description: "Photography, 2024",
+                category: "Photography",
+                imageUrl: "./art/art8.PNG"
+            },
+            {
+                id: 16,
+                title: "My Art",
+                description: "Photography, 2024",
+                category: "Photography",
+                imageUrl: "./art/art9.PNG"
+            },
+            {
+                id: 17,
+                title: "lake Kivu",
+                description: "Photography, 2024",
+                category: "Photography",
+                imageUrl: "./art/gisenyi.JPEG"
+            },
+            {
+                id: 18,
+                title: "National Park",
+                description: "Photography, 2024",
+                category: "Photography",
+                imageUrl: "./art/road.JPEG"
+            },
+            {
+                id: 19,
+                title: "Lake kivu",
+                description: "Photography, 2024",
+                category: "Photography",
+                imageUrl: "./art/gisenyi1.JPEG"
+            },
+            {
+                id: 20,
+                title: "Lake Kivu",
+                description: "Photography, 2024",
+                category: "Photography",
+                imageUrl: "./art/giseny.JPEG"
+            },
+            {
+                id: 21,
+                title: "lake kivu",
+                description: "Photography, 2024",
+                category: "Photography",
+                imageUrl: "./art/gisen.JPEG"
+            },
+            {
+                id: 22,
+                title: "lake kivu",
+                description: "Photography, 2024",
+                category: "Photography",
+                imageUrl: "./art/gise.JPG"
+            },
+            {
+                id: 23,
+                title: "lake kivu",
+                description: "Photography, 2024",
+                category: "Photography",
+                imageUrl: "./art/gis.JPEG"
+            },
+        ];
+
+        // DOM Elements
+        const gallery = document.getElementById('gallery');
+        const modal = document.getElementById('modal');
+        const viewButtons = document.querySelectorAll('.view-controls button');
+        const searchInput = document.querySelector('.search-box input');
+
+        // Render gallery items
+        function renderGallery(items) {
+            gallery.innerHTML = '';
+            items.forEach(artwork => {
+                const card = document.createElement('div');
+                card.className = 'art-card';
+                card.innerHTML = `
+                    <img src="${artwork.imageUrl}" alt="${artwork.title}">
+                    <div class="art-info">
+                        <h3>${artwork.title}</h3>
+                        <p>${artwork.description}</p>
+                        <span class="category">${artwork.category}</span>
+                    </div>
+                `;
+                card.addEventListener('click', () => showModal(artwork));
+                gallery.appendChild(card);
+            });
+        }
+
+        // Show modal with artwork details
+        function showModal(artwork) {
+            modal.style.display = 'flex';
+            const modalImg = modal.querySelector('img');
+            const modalTitle = modal.querySelector('h3');
+            const modalDesc = modal.querySelector('.description');
+            const modalCategory = modal.querySelector('.category');
+
+            modalImg.src = artwork.imageUrl;
+            modalImg.alt = artwork.title;
+            modalTitle.textContent = artwork.title;
+            modalDesc.textContent = artwork.description;
+            modalCategory.textContent = artwork.category;
+        }
+
+        // Close modal
+        document.querySelector('.close-modal').addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // View mode toggle
+        viewButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                viewButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                gallery.className = `gallery ${button.dataset.view}`;
+            });
+        });
+
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredArtworks = artworks.filter(artwork => 
+                artwork.title.toLowerCase().includes(searchTerm) ||
+                artwork.description.toLowerCase().includes(searchTerm) ||
+                artwork.category.toLowerCase().includes(searchTerm)
+            );
+            renderGallery(filteredArtworks);
+        });
+
+        // Initial render
+        renderGallery(artworks);
+    </script>
+</body>
+</html>
