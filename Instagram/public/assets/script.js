@@ -17,7 +17,7 @@ fetch("assets/posts.json")
           <div class="w-11 h-11 p-0.5 rounded-full border-2 border-red-600">
             <a href="#"><img class="w-full h-full rounded-full border object-cover" src="./assets/images/hero.png" alt=""></a>
           </div>
-            <a class="text-black text-sm font-semibold hover:underline" href="#">jhon_doe</a>
+            <a class="text-black text-sm font-semibold hover:underline" href="#">M Abraham</a>
           </div>
           <!-- menu bar -->
           <div class="items-center">
@@ -47,7 +47,7 @@ fetch("assets/posts.json")
 
           <!-- comment -->
           <div class="flex flex-auto items-center space-x-1">
-            <a href="" class="text-sm font-semibold hover:underline">james07</a>
+            <a href="" class="text-sm font-semibold hover:underline">Mugisha</a>
             <span class="text-sm">Lorem ipsum dolor sit amet consectetur</span>
           </div>
 
