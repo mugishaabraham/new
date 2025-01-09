@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .music-waves {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: 0;
+      background: linear-gradient(125deg, #ff0055, #0055ff);
+      animation: wave 15s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.2) rotate(180deg); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header {
+      text-align: center;
+      margin: 3rem 0 5rem;
+      position: relative;
+    }
+
+    .header h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      background: linear-gradient(45deg, #ff0055, #0055ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      color: #888;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .category-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .category-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #ff0055, #0055ff);
+      transition: all 0.3s ease;
+    }
+
+    .category-btn.active::after {
+      left: 0;
+      width: 100%;
+    }
+
+    .content-section {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .content-section.active {
+      display: grid;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .music-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .music-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .music-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #ff005555, #0055ff55);
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+
+    .music-card:hover::before {
+      opacity: 0.1;
+    }
+
+    .instrument-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: all 0.4s ease;
+    }
+
+    .music-card:hover .instrument-image {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 2rem;
+    }
+
+    .card-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ff0055, #0055ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .music-info {
+      color: #888;
+      margin: 1rem 0;
+    }
+
+    .music-info p {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 5px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .instrument-image {
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 3rem;
+      }
+      
+      .categories {
+        flex-wrap: wrap;
+      }
+      
+      .content-section {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="music-waves"></div>
+  
+  <div class="container">
+    <header class="header">
+      <h1>Musical Portfolio</h1>
+      <p>My life where brass, wind, and voices harmonize to create most agreable sound</p>
+    </header>
+
+    <div class="categories">
+      <button class="category-btn active" onclick="showCategory('brass')">Recorder</button>
+      <button class="category-btn" onclick="showCategory('flute')"> Brass Assembly</button>
+      <button class="category-btn" onclick="showCategory('choir')">Choir Voices</button>
+    </div>
+
+    <!-- Brass Section -->
+    <div id="brass" class="content-section active">
+      <div class="music-card">
+        <img src="my heart.png" alt="My heart will go on" class="instrument-image" data-video="https://youtu.be/FPDm9tQQMY0?si=VSuflJMAs-ZgH-_4"/>
+        <div class="card-content">
+          <h3>My heart will go on</h3>
+          <div class="music-info">
+            <p>On Recorder</p>
+            <p>celin dion</p>
+            <p>Click on the image </p>
+          </div>
+        </div>
+        
+      </div>
+      <div class="music-card">
+        <img src="silent.png" alt="Silent night" class="instrument-image" data-video="https://youtu.be/Vxewo4jBrS0?si=0HWRN6WBkQGZgPMx"/>
+        <div class="card-content">
+          <h3>Silent night</h3>
+          <div class="music-info">
+            <p>Christmass</p>
+            <p>Song</p>
+            <p>Click on the image </p>
+          </div>
+        </div>
+      </div>
+      <div class="music-card">
+        <img src="jingle bells.jpg" alt="Jingle bell" class="instrument-image" data-video="https://youtu.be/qHlkwKSPI98?si=nGsPSMXFdn2EF2G2"/>
+        <div class="card-content">
+          <h3>Jingle bell</h3>
+          <div class="music-info">
+            <p>Christmass </p>
+            <p>Song</p>
+            <p>Click on the image </p>
+          </div>
+        </div>
+      </div>
+      <div class="music-card">
+        <img src="happy birthday.jpg" alt="Happy birthday" class="instrument-image" data-video="https://youtu.be/oX0BOACaONQ?si=_ZoxZIQz8ecimSsa"/>
+        <div class="card-content">
+          <h3>Happy birthday</h3>
+          <div class="music-info">
+            <p>song</p>
+            <p>On recorder</p>
+            <p>Click on the image </p>
+          </div>
+        </div>
+      </div>
+      <div class="music-card">
+        <img src="halleluya.png" alt="Halleluyah" class="instrument-image" data-video="https://youtu.be/1M7hlPFy9V4?si=iFquNvL07XMtnVIy"/>
+        <div class="card-content">
+          <h3>Halleluyah</h3>
+          <div class="music-info">
+            <p>pentatonix</p>
+            <p>On Recorder</p>
+            <p>Click on the image </p>
+          </div>
+        </div>
+      </div>
+      <div class="music-card">
+        <img src="squid game.png" alt="Halleluyah" class="instrument-image" data-video="https://youtu.be/t66bwYQAq6c?si=FFwhETSi6xs4i0qW"/>
+        <div class="card-content">
+          <h3>Squid Game </h3>
+          <div class="music-info">
+            <p>anthem</p>
+            <p>Season 2</p>
+            <p>Click on the image </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal">
+      <div class="modal-content">
+        <button class="close-modal">&times;</button>
+        <div class="video-container">
+          <iframe frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!-- Flute Section -->
+    <div id="flute" class="content-section">
+      <div class="music-card">
+        <img src="children hosana.jpeg" alt="Children Hosana" class="instrument-image" data-video="https://youtu.be/S5M2JiB0rKc?si=B73IMWhrGuK7EqP0"/>
+        <div class="card-content">
+          <h3>Children Hosana</h3>
+          <div class="music-info">
+            <p>On Bariton </p>
+            <p>Horn</p>
+            <p>Click on the image </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="music-card">
+        <img src="brass nyundo.png" alt="Modern Flute" class="instrument-image" data-video="https://youtu.be/sHyDcE-d3Pk?si=uf7RaE_6r2u56LYj"/>
+        <div class="card-content">
+          <h3> full brass performance</h3>
+          <div class="music-info">
+            <p>Defire music</p>
+            <p>Parade</p>
+            <p>Click on the image </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+
+    <!-- Choir Section -->
+    <div id="choir" class="content-section">
+      <div class="music-card">
+        <img src="choirs.png" alt="Chamber Choir" class="instrument-image" data-video="https://www.youtube.com/live/95ZrfyKGT6Q?si=zxXgfz8BYUfZWium"/>
+        <div class="card-content">
+          <h3>Our choir </h3>
+          <div class="music-info">
+            <p>In A mass Celebration</p>
+            <p>In karoli Lwanga</p>
+            <p>Click on the image </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function showCategory(category) {
+  document.querySelectorAll('.category-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+  event.target.classList.add('active');
+  
+  document.querySelectorAll('.content-section').forEach(section => {
+    section.classList.remove('active');
+  });
+  
+  document.getElementById(category).classList.add('active');
+}
+
+// Video modal functionality
+const modal = document.querySelector('.modal');
+const modalIframe = modal.querySelector('iframe');
+const closeModal = modal.querySelector('.close-modal');
+
+document.querySelectorAll('.instrument-image').forEach(image => {
+  image.addEventListener('click', () => {
+    const videoUrl = image.dataset.video;
+    modalIframe.src = videoUrl;
+    modal.classList.add('active');
+  });
+});
+
+closeModal.addEventListener('click', () => {
+  modal.classList.remove('active');
+  modalIframe.src = '';
+});
+
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.classList.remove('active');
+    modalIframe.src = '';
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.classList.contains('active')) {
+    modal.classList.remove('active');
+    modalIframe.src = '';
+  }
+});
+  </script>
+</body>
+</html>
