@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="MUGISHA Abraham, MUGISHA Abraham, MUGISHA Abraham, web developers , portfolio design" />
+    <meta name="description" content="Welcome to MUGISHA Abraham' Portfolio.  Web Developer and App Developer" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon -->
+    <link id='favicon' rel="shortcut icon" href="abraham.png" type="image/x-png">
+    <title>Portfolio | MUGISHA Abraham</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Font Awesome for icons -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f0f8ff;
+            color: #333;
+            overflow-x: hidden;
+            opacity: 0.4 ease;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #6ab7ff, #4361ee);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            opacity: 0.2 ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Animated background elements */
+        .bubble {
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(40, 147, 246, 0.2);
+            animation: float 8s infinite;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(0) translateX(20px); }
+            75% { transform: translateY(20px) translateX(10px); }
+        }
+
+        .web {
+            position: fixed;
+            width: 2px;
+            background: linear-gradient(transparent, rgba(67, 97, 238, 0.2), transparent);
+            transform-origin: top;
+            animation: web-sway 5s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes web-sway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* Main sections */
+        section {
+            padding: 4rem 2rem;
+            margin-top: 60px;
+        }
+
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Introduction section */
+        .intro-content {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #4361ee;
+            box-shadow: 0 0 20px rgba(67, 97, 238, 0.2);
+        }
+
+        /* Activities grid */
+        .activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust column size dynamically */
+    gap: 2rem; /* Space between grid items */
+    margin: 2rem 0; /* Optional: add some vertical spacing */
+}
+
+
+        .activity-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            border: 2px solid #6ab7ff;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.2);
+        }
+
+        /* Education section */
+        .education-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .school-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .school-logo {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .contact-image {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            margin: 0 auto;
+        }
+        .activity-card img {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures images fill the space without distortion */
+    border-radius: 10px; /* Optional: rounded corners */
+    display: block;
+    margin: 0 auto;
+}
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #4361ee, #6ab7ff);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .project-image {
+    width: 100%;
+    height: auto;
+    max-width: 100px; /* Adjust size as needed */
+    margin: 0 auto;
+    display: block;
+    border-radius: 10px; /* Optional: rounded corners */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-image:hover {
+    transform: scale(1.1); /* Optional: zoom effect on hover */
+    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.2);
+}
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .activities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            .intro-content {
+                text-align: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Create bubbles and webs with JavaScript -->
+    <script>
+        // Create bubbles
+        for(let i = 0; i < 20; i++) {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.style.width = Math.random() * 50 + 20 + 'px';
+            bubble.style.height = bubble.style.width;
+            bubble.style.left = Math.random() * 100 + 'vw';
+            bubble.style.top = Math.random() * 100 + 'vh';
+            bubble.style.animationDelay = Math.random() * 8 + 's';
+            document.body.appendChild(bubble);
+        }
+
+        // Create web lines
+        for(let i = 0; i < 15; i++) {
+            const web = document.createElement('div');
+            web.className = 'web';
+            web.style.height = Math.random() * 200 + 100 + 'px';
+            web.style.left = Math.random() * 100 + 'vw';
+            web.style.top = Math.random() * 100 + 'vh';
+            web.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(web);
+        }
+    </script>
+
+    <header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#activities">Activities</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="home" class="intro-section">
+        <div class="section-content intro-content">
+            <img src="Abhu.jpg" alt="Profile Picture" class="profile-image">
+            <div class="intro-text">
+                <h1>Abraham Mugisha</h1>
+                <p>a graduating high school student with a passion for technology and active engagement,
+                    I bring a unique blend of academic excellence and diverse interests. 
+                    My journey in programming has equipped me with proficiency in various programming languages,
+                     reflecting my dedication to staying ahead in the digital age. Beyond the classroom, 
+                     I've demonstrated leadership and teamwork through my involvement in multiple school clubs and as a competitive volleyball player.
+                      This combination of technical skills, extracurricular activities, 
+                      and athletic discipline has shaped me into a well-rounded individual eager to embrace new challenges in university and beyond.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="activities">
+        <div class="section-content">
+            <h2>My Activities</h2>
+            <div class="activities-grid">
+                <a href="project1.html" class="activity-card">
+                    <img src="Abhu.jpg" alt="Project 1">
+                    <h3>Project 1</h3>
+                    <p>Description of your first project or activity. Click to learn more.</p>
+                </a>
+                <a href="project2.html" class="activity-card">
+                    <img src="program.jpeg" alt="Project 2">
+                    <h3>Project 2</h3>
+                    <p>Description of your second project or activity. Click to learn more.</p>
+                </a>
+                <a href="project3.html" class="activity-card">
+                    <img src="path-to-your-image/twitter.png" alt="Project 3">
+                    <h3>Project 3</h3>
+                    <p>Description of your third project or activity. Click to learn more.</p>
+                </a>
+                <!-- Add more cards as needed -->
+            </div>
+        </div>
+        <div class="section-content">
+            <div class="activities-grid">
+                <a href="project1.html" class="activity-card">
+                    <img src="Abhu.jpg" alt="Project 1">
+                    <h3>Project 1</h3>
+                    <p>Description of your first project or activity. Click to learn more.</p>
+                </a>
+                <a href="project2.html" class="activity-card">
+                    <img src="program.jpeg" alt="Project 2">
+                    <h3>Project 2</h3>
+                    <p>Description of your second project or activity. Click to learn more.</p>
+                </a>
+                <a href="project3.html" class="activity-card">
+                    <img src="path-to-your-image/twitter.png" alt="Project 3">
+                    <h3>Project 3</h3>
+                    <p>Description of your third project or activity. Click to learn more.</p>
+                </a>
+                <!-- Add more cards as needed -->
+            </div>
+        </div>
+        <div class="section-content">
+            <div class="activities-grid">
+                <a href="project1.html" class="activity-card">
+                    <img src="Abhu.jpg" alt="Project 1">
+                    <h3>Project 1</h3>
+                    <p>Description of your first project or activity. Click to learn more.</p>
+                </a>
+                <a href="project2.html" class="activity-card">
+                    <img src="program.jpeg" alt="Project 2">
+                    <h3>Project 2</h3>
+                    <p>Description of your second project or activity. Click to learn more.</p>
+                </a>
+                <a href="project3.html" class="activity-card">
+                    <img src="path-to-your-image/twitter.png" alt="Project 3">
+                    <h3>Project 3</h3>
+                    <p>Description of your third project or activity. Click to learn more.</p>
+                </a>
+                <!-- Add more cards as needed -->
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="section-content">
+            <h2>Education</h2>
+            <div class="education-content">
+                <div class="school-card">
+                    <img src="/api/placeholder/150/150" alt="School Logo" class="school-logo">
+                    <h3>College Saint Andrew </h3>
+                    <p>High school Diploma • Class 2024</p>
+                    <p>A public school found in Nyamirambo, Kigali, Rwanda. This school is well know for being a school of science and elite students. </p>
+                </div>
+                <!-- Add more school cards as needed -->
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-content">
+            <h2>Contact Me</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Email: mugishaabraham12@gmail.com</p>
+                    <p>Phone: +250 781 194 393</p>
+                    <p>Location: Gisenyi, Rwanda</p>
+                </div>
+                <div class="contact-image-container">
+                    <img src="/api/placeholder/400/300" alt="Contact Image" class="contact-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <section id="projects">
+                <h2>My Socials</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <a href="https://github.com/mugishaabraham" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                    <div class="project-card">
+                        <a href="https://www.linkedin.com/in/abraham-mugisha-2192b8334/overlay/about-this-profile/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <div class="project-card">
+                        <a href="https://t.me/Abr_a_h_a_m" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                        <div class="project-card">
+                    <a href="tel:+250781194393" target="_blank"><i class="fas fa-phone-alt"></i></a>
+                            <div class="project-card">
+                    <a href="https://www.instagram.com/abra.h.a.m" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </section>
+        
+            </div>
+            <div>
+                <h3>"For I know God's Plan are better that my plans"</h3>
+                <p>Abraham Mugisha </p>
+                <p>Thank you for visiting my personal portfolio website. Connect with me over socials.<br/> <br/> Keep Rising 🚀.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
