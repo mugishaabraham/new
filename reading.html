@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Book Collection</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @keyframes bookAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(
+                -45deg, 
+                #e7e7de, 
+                #d3c1ae, 
+                #b4a147, 
+                #8c7851
+            );
+            background-size: 400% 400%;
+            animation: bookAnimation 15s ease infinite;
+            color: #3d405b;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-header {
+            background-color: rgba(255,255,255,0.7);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .book-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .book-box {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .book-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .book-title {
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+            background-color: rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>📚 My Book Collection 📚</h1>
+            <p>A curated journey through the stories that have shaped my world</p>
+        </div>
+
+        <div class="book-gallery" id="bookGallery">
+            <div class="book-box">
+                <img src="" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book2.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="   ">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+            <div class="book-box">
+                <img src="path/to/book3.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
