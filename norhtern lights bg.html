@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .aurora-container {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      filter: blur(20px);  /* Reduced blur for better visibility */
+    }
+
+    .aurora {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      opacity: 0.5;  /* Increased opacity */
+      animation: float 15s infinite ease-in-out;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+    }
+
+    .star.twinkle {
+      animation: twinkle 1s infinite alternate;
+    }
+  </style>
+</head>
+<body>
+  <div class="aurora-container" id="auroraContainer"></div>
+
+  <script>
+    function createStars() {
+      const container = document.body;
+      const starCount = 200;  // Number of stars
+
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        if (Math.random() > 0.5) {
+          star.classList.add('twinkle');
+        }
+
+        // Random position
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
+        
+        // Random size between 1-3px
+        const size = 1 + Math.random() * 2;
+
+        star.style.left = `${left}%`;
+        star.style.top = `${top}%`;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        
+        // Random delay for twinkling
+        if (star.classList.contains('twinkle')) {
+          star.style.animationDelay = `${Math.random() * 1}s`;
+        }
+
+        container.appendChild(star);
+      }
+    }
+
+    function createAurora() {
+      const container = document.getElementById('auroraContainer');
+      const colors = ['#64ff87', '#48ff9f', '#00ffc3', '#00ffea', '#00d5ff'];
+      
+      // Create multiple aurora elements
+      for (let i = 0; i < 15; i++) {
+        const aurora = document.createElement('div');
+        aurora.className = 'aurora';
+        
+        // Random position
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
+        
+        // Random color from our palette
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Random scale
+        const scale = 0.5 + Math.random() * 2;
+        
+        // Apply styles
+        aurora.style.left = `${left}%`;
+        aurora.style.top = `${top}%`;
+        aurora.style.backgroundColor = color;
+        aurora.style.transform = `scale(${scale})`;
+        
+        // Add unique animation
+        aurora.style.animation = `
+          float ${15 + Math.random() * 10}s infinite ease-in-out,
+          pulse ${5 + Math.random() * 5}s infinite ease-in-out
+        `;
+        
+        container.appendChild(aurora);
+      }
+    }
+
+    // Add keyframe animations dynamically
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0) translateX(0) scale(1);
+        }
+        25% {
+          transform: translateY(-50px) translateX(50px) scale(1.2);
+        }
+        50% {
+          transform: translateY(-100px) translateX(-50px) scale(1);
+        }
+        75% {
+          transform: translateY(-50px) translateX(25px) scale(0.8);
+        }
+      }
+      
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 0.8;
+        }
+      }
+
+      @keyframes twinkle {
+        0% {
+          opacity: 0.3;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Initialize both effects
+    createStars();
+    createAurora();
+  </script>
+</body>
+</html>

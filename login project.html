@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon logo.png" type="image/x-icon">
+  <title>Front Page</title>
+  <script>
+      document.addEventListener("visibilitychange", function() {
+          if (document.hidden) {
+              document.title = "Come back! we  miss you 😢";
+          } else {
+              document.title = "Front page";
+          }
+      });
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(to right, #e9e9e9, #b8c6db);
+    }
+    
+    .container {
+      position: relative;
+      width: 800px;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .card {
+      position: relative;
+      width: 1000px;
+      height: 500px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    
+    .login-form, .signup-form {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+    }
+    
+    .login-form {
+      transform: translateX(0);
+    }
+    
+    .signup-form {
+      transform: translateX(100%);
+    }
+    
+    .active .login-form {
+      transform: translateX(-100%);
+    }
+    
+    .active .signup-form {
+      transform: translateX(0);
+    }
+    
+    .form-left {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 30px;
+    }
+    
+    .form-right {
+      width: 50%;
+      border-radius: 20px;
+      background: #16134b;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30px;
+    }
+    
+    h2 {
+      margin-bottom: 15px;
+      font-size: 22px;
+      color: #333;
+    }
+    
+    .form-right h2 {
+      color: white;
+    }
+    
+    .form-right p {
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    
+    .social-icon {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    
+    .divider {
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+      margin: 15px 0;
+    }
+    
+    form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    
+    button {
+      background: #1e1a58;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    
+    .signup-btn {
+      background: transparent;
+      border: 1px solid white;
+      margin-top: 20px;
+    }
+    
+    .login-link {
+      margin-top: 15px;
+      font-size: 12px;
+      text-align: right;
+    }
+    
+    .login-link a {
+      color: #777;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card" id="card">
+      <!-- Login Form -->
+      <div class="login-form">
+        <div class="form-left">
+          <h2>Sign In</h2>
+          <div class="social-icons">
+            <div class="social-icon">G</div>
+            <div class="social-icon">f</div>
+            <div class="social-icon">in</div>
+          </div>
+          <div class="divider">or use your email password</div>
+          <form>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <div class="login-link">
+              <a href="#">Forgot Your Password?</a>
+            </div>
+            <button type="button">SIGN IN</button>
+          </form>
+        </div>
+        <div class="form-right">
+          <h2>Hello, Friend!</h2>
+          <p>Register with your personal details to use all of the features</p>
+          <button class="signup-btn" id="show-signup">SIGN UP</button>
+        </div>
+      </div>
+      
+      <!-- Signup Form -->
+      <div class="signup-form">
+        <div class="form-right">
+          <h2>Welcome Back!</h2>
+          <p>Enter your personal details to use all of the features</p>
+          <button class="signup-btn" id="show-login">SIGN IN</button>
+        </div>
+        <div class="form-left">
+          <h2>Create Account</h2>
+          <div class="social-icons">
+            <div class="social-icon">G</div>
+            <div class="social-icon">f</div>
+            <div class="social-icon">in</div>
+          </div>
+          <div class="divider">or use your email for registration</div>
+          <form>
+            <input type="text" placeholder="First Name" required>
+            <input type="text" placeholder="Middle Name">
+            <input type="text" placeholder="Last Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="button">SIGN UP</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const card = document.getElementById('card');
+      const showSignupBtn = document.getElementById('show-signup');
+      const showLoginBtn = document.getElementById('show-login');
+      
+      showSignupBtn.addEventListener('click', function() {
+        card.classList.add('active');
+      });
+      
+      showLoginBtn.addEventListener('click', function() {
+        card.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
