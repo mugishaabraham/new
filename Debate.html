@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idebate Dreamers Academy Champion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #ff6b35 0%, #8B4513 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .achievement-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 1rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid #ff6b35;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-title {
+            color: #8B4513;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .media-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border: 3px dashed #ff6b35;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #8B4513;
+            text-align: center;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .media-placeholder:hover {
+            background: linear-gradient(45deg, #ff6b35, #e85a2b);
+            color: white;
+            border-color: #8B4513;
+        }
+
+        .media-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .media-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+        
+        .media-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .full-width-section {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            color: #8B4513;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #ff6b35, #8B4513);
+            border-radius: 2px;
+        }
+
+        .competition-info {
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .info-highlight {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid #ff6b35;
+        }
+
+        .trophy-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .trophy-placeholder {
+            height: 200px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border: 3px dashed #ff6b35;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #8B4513;
+            text-align: center;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .trophy-placeholder:hover {
+            background: linear-gradient(45deg, #ff6b35, #e85a2b);
+            color: white;
+            border-color: #8B4513;
+            transform: scale(1.05);
+        }
+
+        .logo-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .logo-placeholder {
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border: 3px dashed #8B4513;
+            border-radius: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #8B4513;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin: 0 auto;
+        }
+
+        .logo-placeholder:hover {
+            background: linear-gradient(45deg, #8B4513, #A0522D);
+            color: white;
+            border-color: #ff6b35;
+            transform: scale(1.02);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #ff6b35, #e85a2b);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transform: perspective(1000px) rotateX(5deg);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: perspective(1000px) rotateX(0deg) translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .media-placeholder {
+                height: 250px;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">🏆 CHAMPION</h1>
+                <p class="hero-subtitle">Idebate Dreamers Academy Camp</p>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">Winner of Africa's Most Competitive Debate Competition</p>
+                <div class="achievement-badge">
+                    <strong>DEBATE CHAMPION 2024</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Competition Information -->
+        <div class="full-width-section">
+            <h2 class="section-title">About the Achievement</h2>
+            <div class="competition-info">
+                <h3 style="font-size: 2rem; margin-bottom: 1rem;">🎯 Idebate Dreamers Academy</h3>
+                <div class="info-highlight">
+                    <strong>Africa's Premier Debate Competition</strong><br>
+                    The most competitive and prestigious debate tournament on the continent, bringing together the brightest minds from across Africa.
+                </div>
+                <div class="info-highlight">
+                    <strong>Elite Training Program</strong><br>
+                    An intensive camp designed to develop world-class debaters through rigorous training, mentorship, and competition.
+                </div>
+                <div class="info-highlight">
+                    <strong>International Recognition</strong><br>
+                    Winners gain recognition across the global debate community and opportunities for international competitions.
+                </div>
+            </div>
+        </div>
+
+        <!-- Media Content Grid -->
+        <div class="content-grid">
+            <!-- Video Section -->
+            <div class="content-card">
+                <h3 class="card-title">🎬 Championship Presentation</h3>
+                <p style="color: #666; margin-bottom: 1rem;">
+                    Watch the winning debate performance that secured victory at the Idebate Dreamers Academy Camp.
+                </p>
+                <div class="media-placeholder">
+                    <div class="media-container">
+                        <iframe src="https://www.youtube.com/embed/O8IX0XSeLnw" title="Championship Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <p style="color: #888; font-size: 0.9rem; margin-top: 1rem;">
+                    Championship debate performance video
+                </p>
+            </div>
+
+            <!-- Achievement Stats -->
+            <div class="content-card">
+                <h3 class="card-title">📊 Tournament Statistics</h3>
+                <div class="stats-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="stat-card">
+                        <div class="stat-number">1st</div>
+                        <div class="stat-label">Place</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">🏆</div>
+                        <div class="stat-label">Champion</div>
+                    </div>
+                </div>
+                <p style="color: #666; margin-top: 1rem;">
+                    Demonstrated exceptional argumentation skills, critical thinking, and public speaking abilities to claim the top position in Africa's most challenging debate competition.
+                </p>
+            </div>
+        </div>
+
+        <!-- Trophy Gallery -->
+        <div class="full-width-section">
+            <h2 class="section-title">🏆 Victory Moments</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem; font-size: 1.1rem;">
+                Celebrating the moment of triumph at the Idebate Dreamers Academy Camp
+            </p>
+            <div class="trophy-gallery">
+                <div class="trophy-placeholder">
+                    <div class="media-container">
+                        <img src="win1.jpg" alt="Trophy Ceremony">
+                    </div>
+                </div>
+                 <div class="trophy-placeholder">
+                    <div class="media-container">
+                        <img src="win2.jpg" alt="Trophy Ceremony">
+                    </div>
+                </div>
+                 <div class="trophy-placeholder">
+                    <div class="media-container">
+                        <img src="trophy1.png" alt="Trophy Ceremony">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logo Section -->
+        <div class="logo-section">
+            <h3 style="color: #8B4513; margin-bottom: 2rem; font-size: 1.8rem;">Official Idebate Logo</h3>
+            <div class="logo-placeholder pulse">
+                <div>
+                     <div class="trophy-placeholder">
+                    <div class="media-container">
+                        <img src="logo of debate.png" alt="Trophy Ceremony">
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Impact Statement -->
+        <div class="full-width-section">
+            <h2 class="section-title">🌍 Impact & Recognition</h2>
+            <div style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 2rem; border-radius: 15px; border-left: 5px solid #ff6b35;">
+                <p style="font-size: 1.2rem; color: #333; line-height: 1.8; margin-bottom: 1.5rem;">
+                    Winning the Idebate Dreamers Academy Camp represents more than just a competition victory—it's recognition as one of Africa's top young debaters. This achievement opens doors to international competitions, leadership opportunities, and a network of exceptional thinkers across the continent.
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                    <div style="background: white; padding: 1.5rem; border-radius: 10px; text-align: center;">
+                        <strong style="color: #ff6b35; font-size: 1.3rem;">🌟 Excellence</strong>
+                        <p style="margin-top: 0.5rem; color: #666;">Demonstrated mastery of argumentation and critical thinking</p>
+                    </div>
+                    <div style="background: white; padding: 1.5rem; border-radius: 10px; text-align: center;">
+                        <strong style="color: #8B4513; font-size: 1.3rem;">🚀 Leadership</strong>
+                        <p style="margin-top: 0.5rem; color: #666;">Proven ability to lead discussions and influence outcomes</p>
+                    </div>
+                    <div style="background: white; padding: 1.5rem; border-radius: 10px; text-align: center;">
+                        <strong style="color: #ff6b35; font-size: 1.3rem;">🌍 Impact</strong>
+                        <p style="margin-top: 0.5rem; color: #666;">Ready to make a difference on the continental stage</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
